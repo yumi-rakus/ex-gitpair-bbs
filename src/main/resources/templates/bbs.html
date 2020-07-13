@@ -13,7 +13,10 @@
 
 
 	<form th:action="@{/insert}" th:object="${articleForm}" method="post">
-		投稿者名：<input type="text" th:field="*{name}"><br> 投稿内容：<br>
+		<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>
+		投稿者名：<input type="text" th:field="*{name}"><br> 
+		<div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color: red"></div>
+		投稿内容：<br>
 		<textarea rows="5" cols="50" th:field="*{content}"></textarea>
 		<br>
 		<button type="submit">記事投稿</button>

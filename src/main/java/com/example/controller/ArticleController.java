@@ -43,6 +43,7 @@ public class ArticleController {
 		Article article=new Article();
 		article.setName(articleForm.getName());
 		article.setContent(articleForm.getContent());
+		articleService.insert(article);
 		return "articleList";
 	}
 }

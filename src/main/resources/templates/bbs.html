@@ -28,6 +28,8 @@
 			投稿者名：<span th:text="*{name}"></span><br> 投稿内容：<br> <span
 				th:text="*{content}"
 				style="font-family: YuGothic, 'Yu Gothic', sans-serif; font-weight: bold"></span><br>
+				
+				<a th:href="@{'/delete?id=' + *{id}}">記事削除</a>
 			<br>
 
 			<!-- コメント -->

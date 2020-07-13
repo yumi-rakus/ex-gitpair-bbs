@@ -7,7 +7,7 @@ public class Comment {
 	
 	private String content;
 	
-	private Integer article;
+	private Integer articleId;
 	
 	public Comment() {
 		
@@ -18,7 +18,7 @@ public class Comment {
 		this.id = id;
 		this.name = name;
 		this.content = content;
-		this.article = article;
+		this.articleId = article;
 	}
 
 	public Integer getId() {
@@ -46,11 +46,11 @@ public class Comment {
 	}
 
 	public Integer getArticle() {
-		return article;
+		return articleId;
 	}
 
 	public void setArticle(Integer article) {
-		this.article = article;
+		this.articleId = article;
 	}
 	
 	

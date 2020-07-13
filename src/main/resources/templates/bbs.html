@@ -45,11 +45,11 @@
 
 		</div>
 
-		<form th:action="@{/ex-bbs/postComment}" method="post" th:object="${commentForm}">
+		<form th:action="@{/postComment}" method="post" th:object="${commentForm}">
 			名前:<br> <input type="text" th:field="*{name}"><br>
 			コメント:<br>
 			<textarea th:field="*{content}" rows="5" cols="50"></textarea>
-			<input type="hidden" th:value="${article.id}" th:field="*{articleId}">
+			<input type="hidden" th:value="${article.id}" name="articleId">
 			<button>コメント投稿</button>
 		</form>
 

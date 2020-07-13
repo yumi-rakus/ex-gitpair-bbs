@@ -42,6 +42,7 @@ public class ArticleRepository {
 	@Autowired
 	private NamedParameterJdbcTemplate template;
 	
+	//記事情報（コメント情報を含む）を全件取得するメソッド
 	public List<Article> findAll(){
 		
 		StringBuilder sql = new StringBuilder();

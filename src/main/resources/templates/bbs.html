@@ -13,25 +13,27 @@
 
 
 	<form th:action="@{/insert}" th:object="${articleForm}" method="post">
-		<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red"></div>
-		投稿者名：<input type="text" th:field="*{name}"><br> 
-		<div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color: red"></div>
+		<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+			style="color: red"></div>
+		投稿者名：<input type="text" th:field="*{name}"><br>
+		<div th:if="${#fields.hasErrors('content')}" th:errors="*{content}"
+			style="color: red"></div>
 		投稿内容：<br>
 		<textarea rows="5" cols="50" th:field="*{content}"></textarea>
 		<br>
 		<button type="submit">記事投稿</button>
 	</form>
 
-	<div th:each="article : ${articleList}">
+	<div th:each="article, stat : ${articleList}">
 		<hr>
 		<!-- 記事 -->
 		<div th:object="${article}">
 			投稿者名：<span th:text="*{name}"></span><br> 投稿内容：<br> <span
 				th:text="*{content}"
 				style="font-family: YuGothic, 'Yu Gothic', sans-serif; font-weight: bold"></span><br>
-				<br>
-				<a class="delete" th:href="@{'/delete?id=' + *{id}}">記事削除</a>
-			<br><br>
+			<br> <a class="delete" th:href="@{'/delete?id=' + *{id}}">記事削除</a>
+			<br>
+			<br>
 
 			<!-- コメント -->
 			<div th:each="comment : *{commentList}">
@@ -43,18 +45,34 @@
 				<br>
 			</div>
 
+
+
+			<form th:action="@{/postComment}" method="post"
+				th:object="${commentForm}">
+
+
+				<div th:if="${stat.index == commentForm.index}" th:errors="*{name}"
+					style="color: red"></div>
+				名前: <span th:if="${stat.index == commentForm.index}"> <input
+					type="text" th:field="*{name}"><br>
+
+				</span> <span th:unless="${stat.index == commentForm.index}"> <input
+					type="text" name="name"><br>
+				</span>
+
+
+				<div th:if="${stat.index == commentForm.index}"
+					th:errors="*{content}" style="color: red"></div>
+				コメント:<br> <span th:if="${stat.index == commentForm.index}">
+					<textarea th:field="*{content}" rows="5" cols="50"></textarea><br>
+
+				</span> <span th:unless="${stat.index == commentForm.index}"> <textarea
+						name="content" rows="5" cols="50"></textarea><br>
+				</span> <input type="hidden" th:value="${article.id}" name="articleId">
+				<input type="hidden" name="index" th:value="${stat.index}">
+				<button>コメント投稿</button>
+			</form>
 		</div>
-
-		<form th:action="@{/postComment}" method="post" th:object="${commentForm}">
-			<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color:red"></div>
-			名前:<br> <input type="text" th:field="*{name}"><br>
-			<div th:if="${#fields.hasErrors('content')}" th:errors="*{content}" style="color:red"></div>
-			コメント:<br>
-			<textarea th:field="*{content}" rows="5" cols="50"></textarea>
-			<input type="hidden" th:value="${article.id}" name="articleId">
-			<button>コメント投稿</button>
-		</form>
-
 	</div>
 
 </body>

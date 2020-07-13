@@ -76,7 +76,10 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/postComment")
-	public String postComment(CommentForm commentForm,Model model) {
+	public String postComment(@Validated CommentForm commentForm,BindingResult result,Model model) {
+		if(result.hasErrors()) {
+			return index(model);
+		}
 		Comment comment=new Comment();
 		comment.setName(commentForm.getName());
 		comment.setContent(commentForm.getContent());

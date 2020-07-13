@@ -53,5 +53,9 @@ public class ArticleService {
 		articleRepository.insert(article);
 	}
 	
+	public void delete(Integer id) {
+		articleRepository.deleteByArticleId(id);
+	}
+	
 	
 }

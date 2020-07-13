@@ -31,14 +31,10 @@ public class ArticleController {
 
 	@Autowired
 	private ArticleService articleService;
-<<<<<<< HEAD
 
-=======
-	
 	@Autowired
 	private CommentService CommentService;
 	
->>>>>>> feature/postComment
 	@RequestMapping("")
 	public String index(Model model) {
 

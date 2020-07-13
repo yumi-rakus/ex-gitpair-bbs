@@ -2,25 +2,27 @@ package com.example.domain;
 
 public class Comment {
 	private Integer id;
-	
+
 	private String name;
-	
+
 	private String content;
-	
+
 	private Integer articleId;
-	
+
+	// constructor
 	public Comment() {
-		
+
 	}
 
-	public Comment(Integer id, String name, String content, Integer article) {
+	public Comment(Integer id, String name, String content, Integer articleId) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.content = content;
-		this.articleId = article;
+		this.articleId = articleId;
 	}
 
+	// getter setter
 	public Integer getId() {
 		return id;
 	}
@@ -45,13 +47,18 @@ public class Comment {
 		this.content = content;
 	}
 
-	public Integer getArticle() {
+	public Integer getArticleId() {
 		return articleId;
 	}
 
-	public void setArticle(Integer article) {
-		this.articleId = article;
+	public void setArticleId(Integer articleId) {
+		this.articleId = articleId;
 	}
-	
-	
+
+	// toString
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", name=" + name + ", content=" + content + ", articleId=" + articleId + "]";
+	}
+
 }

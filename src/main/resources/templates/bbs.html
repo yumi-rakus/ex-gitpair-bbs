@@ -11,30 +11,43 @@
 	<div th:text="${articleNotExist}"></div>
 
 
+	<form th:action="@{/insert}" th:object="${articleForm}" method="post">
+		投稿者名：<input type="text" th:field="*{name}"><br> 投稿内容：<br>
+		<textarea rows="5" cols="50" th:field="*{content}"></textarea>
+		<br>
+		<button type="submit">記事投稿</button>
+	</form>
+
+
+
+
 	<div th:each="article : ${articleList}">
+		<hr>
 		<!-- 記事 -->
 		<div th:object="${article}">
 			投稿者名：<span th:text="*{name}"></span><br> 投稿内容：<br> <span
 				th:text="*{content}"
-				style="font-family: YuGothic, 'Yu Gothic', sans-serif; font-weight: bold"></span><br><br>
+				style="font-family: YuGothic, 'Yu Gothic', sans-serif; font-weight: bold"></span><br>
+			<br>
 
 			<!-- コメント -->
 			<div th:each="comment : *{commentList}">
 				<div th:object="${comment}">
 					コメント者名：<span th:text="*{name}"></span><br> コメント内容：<br> <span
-						th:text="*{content}" style="font-family: YuGothic, 'Yu Gothic', sans-serif; font-weight: bold"></span><br>
+						th:text="*{content}"
+						style="font-family: YuGothic, 'Yu Gothic', sans-serif; font-weight: bold"></span><br>
 				</div>
 				<br>
 			</div>
 
 		</div>
 		<form th:action="@{/insert}" method="post" th:object="${commentForm}">
-		名前:<br>
-		<input type="text" th:field="*{name}"><br>
-		コメント:<br>
-		<textarea th:field="*{content}"></textarea>
+			名前:<br> <input type="text" th:field="*{name}"><br>
+			コメント:<br>
+			<textarea th:field="*{content}" rows="5" cols="50"></textarea>
+			<input type="hidden" th:value="${article.id}" th:field="*{articleId}">
 		</form>
-		<hr>
+
 	</div>
 
 </body>

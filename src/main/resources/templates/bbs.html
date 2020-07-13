@@ -12,10 +12,24 @@
 
 
 	<div th:each="article : ${articleList}">
+		<!-- 記事 -->
 		<div th:object="${article}">
-			投稿者名：<span th:text="*{name}"></span><br> 投稿内容：<span
-				th:text="*{content}"></span><br>
+			投稿者名：<span th:text="*{name}"></span><br> 投稿内容：<br> <span
+				th:text="*{content}"
+				style="font-family: YuGothic, 'Yu Gothic', sans-serif; font-weight: bold"></span><br><br>
+
+			<!-- コメント -->
+			<div th:each="comment : *{commentList}">
+				<div th:object="${comment}">
+					コメント者名：<span th:text="*{name}"></span><br> コメント内容：<br> <span
+						th:text="*{content}" style="font-family: YuGothic, 'Yu Gothic', sans-serif; font-weight: bold"></span><br>
+				</div>
+				<br>
+			</div>
+
 		</div>
+
+
 		<hr>
 	</div>
 

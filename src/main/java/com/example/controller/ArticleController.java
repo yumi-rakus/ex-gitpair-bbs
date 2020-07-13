@@ -55,6 +55,10 @@ public class ArticleController {
 		article.setName(articleForm.getName());
 		article.setContent(articleForm.getContent());
 		articleService.insert(article);
+		
+		articleForm.setName("");
+		articleForm.setContent("");
+		
 		return index(model);
 	}
 	

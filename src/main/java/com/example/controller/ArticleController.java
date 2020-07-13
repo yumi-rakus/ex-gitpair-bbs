@@ -56,10 +56,7 @@ public class ArticleController {
 		article.setContent(articleForm.getContent());
 		articleService.insert(article);
 		
-		articleForm.setName("");
-		articleForm.setContent("");
-		
-		return index(model);
+		return "forward:/";
 	}
 	
 
@@ -79,6 +76,6 @@ public class ArticleController {
 		comment.setArticleId(commentForm.getArticleId());
 		CommentService.postComment(comment);
 
-		return index(model);
+		return "forward:/";
 	}
 }

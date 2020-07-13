@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
@@ -74,5 +75,20 @@ public class ArticleRepository {
 		SqlParameterSource param=new BeanPropertySqlParameterSource(article);
 
 		template.update(sql,param);
+	}
+	
+	public void deleteByArticleId(Integer id) {
+		
+		StringBuilder sql = new StringBuilder();
+		
+		sql.append("BEGIN; ");
+		sql.append("DELETE FROM comments WHERE article_id = :articleId; ");
+		sql.append("DELETE FROM articles WHERE id = :id; ");
+		sql.append("COMMIT;");
+		
+		SqlParameterSource param = new MapSqlParameterSource().addValue("articleId", id).addValue("id", id);
+		
+		template.update(sql.toString(), param);
+		
 	}
 }

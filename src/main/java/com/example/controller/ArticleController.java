@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.domain.Article;
 import com.example.form.ArticleForm;
+import com.example.form.CommentForm;
 import com.example.service.ArticleService;
 
 @Controller
@@ -19,6 +20,11 @@ public class ArticleController {
 	@ModelAttribute
 	private ArticleForm ArticleForm() {
 		return new ArticleForm();
+	}
+	
+	@ModelAttribute
+	private CommentForm CommentForm() {
+		return new CommentForm();
 	}
 	
 	@Autowired

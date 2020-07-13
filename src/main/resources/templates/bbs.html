@@ -16,6 +16,12 @@
 			投稿者名：<span th:text="*{name}"></span><br> 投稿内容：<span
 				th:text="*{content}"></span><br>
 		</div>
+		<form th:action="@{/insert}" method="post" th:object="${commentForm}">
+		名前:<br>
+		<input type="text" th:field="*{name}"><br>
+		コメント:<br>
+		<textarea th:field="*{content}"></textarea>
+		</form>
 		<hr>
 	</div>
 

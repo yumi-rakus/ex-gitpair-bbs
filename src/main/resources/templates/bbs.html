@@ -2,6 +2,7 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/css/stylesheet.css}">
 <title>掲示板</title>
 </head>
 <body>
@@ -18,9 +19,6 @@
 		<button type="submit">記事投稿</button>
 	</form>
 
-
-
-
 	<div th:each="article : ${articleList}">
 		<hr>
 		<!-- 記事 -->
@@ -28,9 +26,9 @@
 			投稿者名：<span th:text="*{name}"></span><br> 投稿内容：<br> <span
 				th:text="*{content}"
 				style="font-family: YuGothic, 'Yu Gothic', sans-serif; font-weight: bold"></span><br>
-				
-				<a th:href="@{'/delete?id=' + *{id}}">記事削除！！！</a>
-			<br>
+				<br>
+				<a class="delete" th:href="@{'/delete?id=' + *{id}}">記事削除</a>
+			<br><br>
 
 			<!-- コメント -->
 			<div th:each="comment : *{commentList}">

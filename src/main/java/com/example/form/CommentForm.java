@@ -1,10 +1,13 @@
 package com.example.form;
 
+import javax.validation.constraints.NotBlank;
+
 public class CommentForm {
 	private Integer articleId;
 	
+	@NotBlank(message = "入力必須項目です")
 	private String name;
-	
+	@NotBlank(message = "入力必須項目です")
 	private String content;
 
 	public Integer getArticleId() {

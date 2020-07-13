@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -69,7 +71,10 @@ public class ArticleController {
 	}
 
 	@RequestMapping("/postComment")
-	public String postComment(CommentForm commentForm,Model model) {
+	public String postComment(@Validated CommentForm commentForm,BindingResult result,Model model) {
+		if(result.hasErrors()) {
+			return index(model);
+		}
 		Comment comment=new Comment();
 		comment.setName(commentForm.getName());
 		comment.setContent(commentForm.getContent());

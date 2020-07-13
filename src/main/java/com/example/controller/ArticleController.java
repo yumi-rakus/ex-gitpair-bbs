@@ -52,4 +52,12 @@ public class ArticleController {
 		articleService.insert(article);
 		return index(model);
 	}
+	
+	@RequestMapping("/delete")
+	public String delete(String id, Model model) {
+		
+		articleService.delete(Integer.parseInt(id));
+		
+		return index(model);
+	}
 }
